@@ -20,7 +20,7 @@ int	check_filetype(char *file)
 
 static void	invalid_map(t_game *game, int close)
 {
-	printf("Error: Invalid map\n");
+	ft_putendl_fd("Error: Invalid map", 1);
 	if (close)
 		close_game(game);
 	else
@@ -30,24 +30,25 @@ static void	invalid_map(t_game *game, int close)
 
 int	main(int argc, char **argv)
 {
-	t_game	game;
+	t_game	*game;
 
+	game = malloc(sizeof(t_game));
 	if (argc == 2)
 	{
-		game.map = read_map(argv[1]);
-		if (check_map(game.map) && check_filetype(argv[1]))
-			init_game(&game);
+		game->map = read_map(argv[1]);
+		if (check_map(game->map) && check_filetype(argv[1]))
+			init_game(game);
 		else
-			invalid_map(&game, 0);
-		if (!init_map(&game))
-			invalid_map(&game, 1);
-		draw_map(&game);
-		hook_calls(&game);
-		mlx_loop(game.mlx);
+			invalid_map(game, 0);
+		if (!check_conditions(game))
+			invalid_map(game, 1);
+		draw_map(game);
+		hook_calls(game);
+		mlx_loop(game->mlx);
 	}
 	else
 	{
-		printf("Error: Invalid input\n");
+		ft_putendl_fd("Error: Invalid input", 1);
 		exit(1);
 	}
 	return (0);

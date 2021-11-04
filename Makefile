@@ -18,13 +18,18 @@ LFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 INC = -Imlx
 
-SRC = 	main.c \
-		src/map.c \
-		src/init.c \
-		src/draw.c \
-		src/hook.c
+SRC_DIR = ./src
 
-HEADER = so_long.h $(GNL_DIR)/get_next_line.h
+SRC = 	$(SRC_DIR)/so_long.c \
+		$(SRC_DIR)/map.c \
+		$(SRC_DIR)/init.c \
+		$(SRC_DIR)/draw.c \
+		$(SRC_DIR)/hook.c \
+		$(SRC_DIR)/player.c \
+		$(SRC_DIR)/check.c \
+		$(SRC_DIR)/end_game.c
+
+HEADER = $(SRC_DIR)/so_long.h $(GNL_DIR)/get_next_line.h
 
 OBJ = $(SRC:%.c=%.o)
 
