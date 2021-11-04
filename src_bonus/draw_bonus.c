@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	draw_image(t_game *game, void *image, int x, int y)
 {
@@ -16,15 +16,14 @@ void	draw_map(t_game *game)
 		j = 0;
 		while (game->map[i][j])
 		{
-			draw_image(game, game->bg.img, j, i);
+			animation_bg(game, &game->loop, j, i);
 			if (game->map[i][j] == '1')
-				draw_image(game, game->wall.img, j, i);
+				draw_image(game, game->wall->img, j, i);
 			else if (game->map[i][j] == 'C')
-				draw_image(game, game->fish.img, j, i);
+				animation_fish(game, &game->loop, j, i);
 			else if (game->map[i][j] == 'E')
-				draw_image(game, game->exit.img, j, i);
-			else if (game->map[i][j] == 'P')
-				draw_image(game, game->player.img, j, i);
+				draw_image(game, game->exit->img, j, i);
+			animation_player(game, game->player_x, game->player_y);
 			j++;
 		}
 		i++;
