@@ -1,7 +1,7 @@
 #include "so_long_bonus.h"
 #include <stdlib.h>
 
-int	check_filetype(char *file)
+static int	check_filetype(char *file)
 {
 	int	i;
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 			invalid_map(game, 0);
 		if (!check_conditions(game))
 			invalid_map(game, 1);
-		draw_map(game);
+		draw_canvas(game);
 		hook_calls(game);
 		mlx_loop(game->mlx);
 	}

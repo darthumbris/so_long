@@ -51,4 +51,15 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+char	*get_next_line(int fd);
+
+int		ft_nl_len(char *str, char c);
+char	*ft_create_shift_free(char **remain, char *buff);
+char	*ft_strjoingnl(char *remain, char const *buff, int btrd, int len);
+char	*ft_create_line(char **remain, char *buff, int final);
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
 #endif

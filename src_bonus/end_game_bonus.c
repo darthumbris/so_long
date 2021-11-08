@@ -13,23 +13,17 @@ int	end_game(t_game *game)
 	return (0);
 }
 
-void	destroy_animations(t_game *game)
+void	destroy_animations(t_anim *anim, t_game *game)
 {
-	mlx_destroy_image(game->mlx, game->bg->frame1.img);
-	mlx_destroy_image(game->mlx, game->bg->frame2.img);
-	mlx_destroy_image(game->mlx, game->bg->frame3.img);
-	mlx_destroy_image(game->mlx, game->bg->frame4.img);
-	mlx_destroy_image(game->mlx, game->player->frame1.img);
-	mlx_destroy_image(game->mlx, game->player->frame2.img);
-	mlx_destroy_image(game->mlx, game->player->frame3.img);
-	mlx_destroy_image(game->mlx, game->player->frame4.img);
-	mlx_destroy_image(game->mlx, game->fish->frame1.img);
-	mlx_destroy_image(game->mlx, game->fish->frame2.img);
-	mlx_destroy_image(game->mlx, game->fish->frame3.img);
-	mlx_destroy_image(game->mlx, game->fish->frame4.img);
-	free(game->bg);
-	free(game->player);
-	free(game->fish);
+	mlx_destroy_image(game->mlx, anim->frame1->img);
+	mlx_destroy_image(game->mlx, anim->frame2->img);
+	mlx_destroy_image(game->mlx, anim->frame3->img);
+	mlx_destroy_image(game->mlx, anim->frame4->img);
+	free(anim->frame1);
+	free(anim->frame2);
+	free(anim->frame3);
+	free(anim->frame4);
+	free(anim);
 }
 
 int	close_game(t_game *game)
@@ -38,7 +32,10 @@ int	close_game(t_game *game)
 	mlx_destroy_image(game->mlx, game->exit->img);
 	mlx_destroy_image(game->mlx, game->wall->img);
 	mlx_destroy_image(game->mlx, game->end->img);
-	destroy_animations(game);
+	destroy_animations(game->canvas, game);
+	destroy_animations(game->bg, game);
+	destroy_animations(game->player, game);
+	destroy_animations(game->fish, game);
 	free(game->wall);
 	free(game->exit);
 	free(game->end);

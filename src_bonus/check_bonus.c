@@ -15,6 +15,7 @@ int	check_valid_position(t_game *game, int x, int y)
 	{
 		game->fish_collect++;
 		game->map[i][j] = '0';
+		update_canvas(game, j, i);
 	}
 	if (game->map[i][j] == 'E')
 	{
@@ -26,27 +27,29 @@ int	check_valid_position(t_game *game, int x, int y)
 	return (1);
 }
 
-int	check_conditions(t_game *game)
+static int	check_exit(t_game *game)
 {
-	game->player_x = 0;
-	game->player_y = 0;
-	if (init_player(game) > 0 && init_exit(game) > 0 && init_fishes(game) > 0)
-		return (1);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'E')
+				return (1);
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }
 
-void	check_frame(t_anim *anim, t_game *game)
+int	check_conditions(t_game *game)
 {
-	if (game->frame_c == 1)
-		draw_image
-			(game, anim->frame1.img, game->player_x, game->player_y);
-	if (game->frame_c == 2)
-		draw_image
-			(game, anim->frame2.img, game->player_x, game->player_y);
-	if (game->frame_c == 3)
-		draw_image
-			(game, anim->frame3.img, game->player_x, game->player_y);
-	if (game->frame_c == 4)
-		draw_image
-			(game, anim->frame4.img, game->player_x, game->player_y);
+	if (init_player(game) > 0 && check_exit(game) > 0 && init_fishes(game) > 0)
+		return (1);
+	return (0);
 }

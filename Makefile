@@ -6,10 +6,6 @@ LIBFT_DIR = ./utils/libft
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
-GNL_DIR = ./utils/gnl
-
-GNL = $(GNL_DIR)/get_next_line.a
-
 MLX_DIR = ./mlx
 
 MLX_LIB = libmlx.dylib
@@ -42,10 +38,13 @@ SRC_BONUS =	$(SRC_BONUS_DIR)/so_long_bonus.c \
 			$(SRC_BONUS_DIR)/check_bonus.c \
 			$(SRC_BONUS_DIR)/end_game_bonus.c \
 			$(SRC_BONUS_DIR)/animation_bonus.c \
+			$(SRC_BONUS_DIR)/canvas_bonus.c \
+			$(SRC_BONUS_DIR)/sprite_bonus.c \
+			$(SRC_BONUS_DIR)/init_address.c
 
-HEADER = $(SRC_DIR)/so_long.h $(GNL_DIR)/get_next_line.h
+HEADER = $(SRC_DIR)/so_long.h $(LIBFT_DIR)/libft.h
 
-HEADER_BONUS = $(SRC_BONUS_DIR)/so_long_bonus.h $(GNL_DIR)/get_next_line.h
+HEADER_BONUS = $(SRC_BONUS_DIR)/so_long_bonus.h $(LIBFT_DIR)/libft.h
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -53,8 +52,8 @@ OBJ_BONUS = $(SRC_BONUS:%.c=%.o)
 
 all: minilibx $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ) $(HEADER) $(GNL)
-	gcc  $(LFLAGS) $(FLAGS) $(OBJ) $(LIBFT) $(GNL) -o $(NAME)
+$(NAME): $(LIBFT) $(OBJ) $(HEADER)
+	gcc  $(LFLAGS) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 %.o: %.c
 	gcc $(FLAGS) $(INC) -c $< -o $@
@@ -62,13 +61,10 @@ $(NAME): $(LIBFT) $(OBJ) $(HEADER) $(GNL)
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(GNL):
-	$(MAKE) -C $(GNL_DIR)
-
 bonus: minilibx $(NAME_BONUS)
 
-$(NAME_BONUS): $(LIBFT) $(OBJ_BONUS) $(HEADER_BONUS) $(GNL)
-	gcc  $(LFLAGS) $(FLAGS) -fsanitize=address -g3 $(OBJ_BONUS) $(LIBFT) $(GNL) -o $(NAME_BONUS)
+$(NAME_BONUS): $(LIBFT) $(OBJ_BONUS) $(HEADER_BONUS)
+	gcc  $(LFLAGS) $(FLAGS) -fsanitize=address -g3 $(OBJ_BONUS) $(LIBFT) -o $(NAME_BONUS)
 
 minilibx:
 	$(MAKE) -C $(MLX_DIR)
@@ -77,11 +73,12 @@ minilibx:
 clean:
 	$(MAKE) clean -C $(MLX_DIR)
 	$(MAKE) clean -C $(LIBFT_DIR)
-	$(MAKE) clean -C $(GNL_DIR)
 	rm -f $(OBJ) $(MLX_LIB) $(OBJ_BONUS)
 
 fclean:	clean
-	rm -f $(NAME) $(NAME_BONUS)
+	$(MAKE) fclean -C $(LIBFT_DIR)
+	rm -f $(NAME)
+	rm -f $(NAME_BONUS)
 
 re: fclean all
 
