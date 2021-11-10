@@ -1,19 +1,5 @@
 #include "so_long_bonus.h"
 
-//	game->player_x = 0;
-// 	game->player_y = 0;
-// 	game->moves = 0;
-// 	game->map_width = get_map_width(game->map, 1) * 32;
-// 	game->map_height = get_map_height(game->map) * 32;
-// 	game->fish_collect = 0;
-// 	game->fish_total = 0;
-// 	game->endstate = 0;
-// 	game->loop = 1;
-// 	game->direction = 1;
-// 	game->color = 0;
-// 	game->frame_c = 1;
-// 	game->moves_str = ft_strdup("Moves: 0");
-
 static void	init_img(t_game *game)
 {
 	game->wall.img = NULL;

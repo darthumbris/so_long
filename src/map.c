@@ -1,5 +1,4 @@
 #include "so_long.h"
-#include <unistd.h>
 #include <fcntl.h>
 
 char	**read_map(char *file)

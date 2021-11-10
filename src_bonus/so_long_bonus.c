@@ -8,7 +8,7 @@ int	main(int argc, char **argv)
 	{
 		game = (t_game *)malloc(sizeof(t_game));
 		if (game == NULL)
-			exit_msg(NULL, "Error: MAlloc failed");
+			exit_msg(NULL, "Error: Malloc failed");
 		init_values(game);
 		if (!check_conditions(game, argv))
 			exit_msg(game, "Error: Invalid map");

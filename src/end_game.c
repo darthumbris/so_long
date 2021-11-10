@@ -1,5 +1,4 @@
 #include "so_long.h"
-#include <stdio.h>
 
 int	end_game(t_game *game)
 {

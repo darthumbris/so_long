@@ -1,7 +1,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include <mlx.h>
-# include "../utils/libft/libft.h"
+# include <libft.h>
 
 # define UP 	13
 # define DOWN	1

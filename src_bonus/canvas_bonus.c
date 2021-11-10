@@ -1,5 +1,4 @@
 #include "so_long_bonus.h"
-#include <stdio.h>
 
 void	init_canvas(t_game *game)
 {

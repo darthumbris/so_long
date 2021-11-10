@@ -2,11 +2,11 @@ NAME = so_long
 
 NAME_BONUS = so_long_bonus
 
-LIBFT_DIR = ./utils/libft
+LIBFT_DIR = ./libs/libft
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
-MLX_DIR = ./mlx
+MLX_DIR = ./libs/mlx
 
 MLX_LIB = $(MLX_DIR)/libmlx.dylib
 
@@ -47,7 +47,7 @@ all: $(NAME)
 
 $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ)
 	cd $(LIBFT_DIR) && mv ./libft.a ../../
-	cd $(MLX_DIR) && mv ./libmlx.dylib ../
+	cd $(MLX_DIR) && mv ./libmlx.dylib ../../
 	gcc $(FLAGS) $(OBJ) -L. -lmlx -lft $(LFLAGS) -o $(NAME)
 
 %.o: %.c
@@ -63,7 +63,7 @@ bonus: $(NAME_BONUS)
 
 $(NAME_BONUS): $(MLX_LIB) $(LIBFT) $(OBJ_BONUS)
 	cd $(LIBFT_DIR) && mv ./libft.a ../../
-	cd $(MLX_DIR) && mv ./libmlx.dylib ../
+	cd $(MLX_DIR) && mv ./libmlx.dylib ../../
 	gcc $(FLAGS) $(OBJ_BONUS) -L. -lmlx -lft $(LFLAGS) -o $(NAME_BONUS)
 
 clean:

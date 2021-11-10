@@ -16,7 +16,6 @@ void	init_values(t_game *game)
 	game->win = NULL;
 	game->map = NULL;
 	init_img(game);
-	//game->color = 0;
 	game->player_x = 0;
 	game->player_y = 0;
 	game->moves = 0;

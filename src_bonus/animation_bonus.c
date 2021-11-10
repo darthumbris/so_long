@@ -1,5 +1,4 @@
 #include "so_long_bonus.h"
-#include <stdio.h>
 
 void	init_animation_frames(t_game *game, t_anim *anim, char *path)
 {
