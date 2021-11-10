@@ -15,29 +15,14 @@ int	end_game(t_game *game)
 
 int	close_game(t_game *game)
 {
-	free_map(game->map);
-	mlx_destroy_image(game->mlx, game->bg.img);
-	mlx_destroy_image(game->mlx, game->exit.img);
-	mlx_destroy_image(game->mlx, game->fish.img);
-	mlx_destroy_image(game->mlx, game->player.img);
-	mlx_destroy_image(game->mlx, game->wall.img);
-	mlx_destroy_image(game->mlx, game->end.img);
 	mlx_destroy_window(game->mlx, game->win);
-	free(game->bg.addr);
-	free(game->player.addr);
-	free(game->wall.addr);
-	free(game->exit.addr);
-	free(game->fish.addr);
-	free(game->end.addr);
-	free(game->mlx);
-	free(game);
 	exit(0);
 	return (0);
 }
 
 void	exit_msg(t_game *game, char *msg)
 {
-	if (game->win)
+	if (game)
 		mlx_destroy_window(game->mlx, game->win);
 	ft_putendl_fd(msg, 1);
 	exit(0);

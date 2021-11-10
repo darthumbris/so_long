@@ -8,11 +8,11 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 MLX_DIR = ./mlx
 
-MLX_LIB = libmlx.dylib
+MLX_LIB = $(MLX_DIR)/libmlx.dylib
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 
-LFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+LFLAGS = -framework OpenGL -framework AppKit
 
 INC = -I ./includes
 
@@ -46,14 +46,15 @@ OBJ_BONUS = $(SRC_BONUS:%.c=%.o)
 all: $(NAME)
 
 $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ)
-	gcc $(LFLAGS) $(FLAGS) $(OBJ) $(LIBFT) -g -o $(NAME)
+	cd $(LIBFT_DIR) && mv ./libft.a ../../
+	cd $(MLX_DIR) && mv ./libmlx.dylib ../
+	gcc $(FLAGS) $(OBJ) -L. -lmlx -lft $(LFLAGS) -o $(NAME)
 
 %.o: %.c
 	gcc $(FLAGS) $(INC) -c $< -o $@
 
 $(MLX_LIB):
 	$(MAKE) -C $(MLX_DIR)
-	cp $(MLX_DIR)/$(MLX_LIB) .
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
@@ -61,12 +62,14 @@ $(LIBFT):
 bonus: $(NAME_BONUS)
 
 $(NAME_BONUS): $(MLX_LIB) $(LIBFT) $(OBJ_BONUS)
-	gcc  $(LFLAGS) $(FLAGS) $(OBJ_BONUS) $(LIBFT) -g -o $(NAME_BONUS)
+	cd $(LIBFT_DIR) && mv ./libft.a ../../
+	cd $(MLX_DIR) && mv ./libmlx.dylib ../
+	gcc $(FLAGS) $(OBJ_BONUS) -L. -lmlx -lft $(LFLAGS) -o $(NAME_BONUS)
 
 clean:
 	$(MAKE) clean -C $(MLX_DIR)
 	$(MAKE) clean -C $(LIBFT_DIR)
-	rm -f $(OBJ) $(OBJ_BONUS) $(LIBFT) $(MLX_LIB)
+	rm -f $(OBJ) $(OBJ_BONUS) libft.a libmlx.dylib
 
 fclean:	clean
 	$(MAKE) fclean -C $(LIBFT_DIR)
@@ -75,4 +78,4 @@ fclean:	clean
 
 re: fclean all
 
-.PHONY: all clean fclean re norm bonus minilibx
+.PHONY: all clean fclean re norm bonus

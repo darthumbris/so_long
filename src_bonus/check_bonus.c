@@ -69,6 +69,8 @@ int	check_conditions(t_game *game, char **argv)
 	if (check_filetype(argv[1]))
 	{
 		game->map = read_map(argv[1]);
+		if (game->map == NULL)
+			exit_msg(NULL, "Error: Invalid input");
 		game->map_height = get_map_height(game->map);
 		game->map_width = get_map_width(game->map, game->map_height);
 		if (check_map(game->map, game->map_width, game->map_height))

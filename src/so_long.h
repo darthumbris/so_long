@@ -40,21 +40,28 @@ typedef struct s_game
 	int		fish_collect;
 	int		endstate;
 }				t_game;
+
+void	init_values(t_game *game);
+int		check_conditions(t_game *game, char **argv);
+
 char	**read_map(char *file);
-int		check_map(char **map);
-int		check_conditions(t_game *game);
+int		check_map(char **map, int x, int y);
+
 int		get_map_height(char **map);
 int		get_map_width(char **map, int height);
 void	init_game(t_game *game);
 int		init_player(t_game *game);
-int		init_exit(t_game *game);
 int		init_fishes(t_game *game);
+
 void	draw_map(t_game *game);
 void	draw_image(t_game *game, void *image, int x, int y);
+
 void	hook_calls(t_game *game);
+
 int		check_valid_position(t_game *game, int x, int y);
 void	player_move(t_game *game, int x, int y);
-void	free_map(char **game);
+
 int		end_game(t_game *game);
 int		close_game(t_game *game);
+void	exit_msg(t_game *game, char *msg);
 #endif

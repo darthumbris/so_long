@@ -3,6 +3,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
+
 typedef long long	t_64i;
 
 int		ft_isalpha(int c);
@@ -55,8 +59,4 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 char	*get_next_line(int fd);
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
-# endif
 #endif

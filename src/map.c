@@ -61,16 +61,12 @@ int	get_map_height(char **map)
 	return (height);
 }
 
-int	check_map(char **map)
+int	check_map(char **map, int x, int y)
 {
-	int	x;
-	int	y;
 	int	i;
 	int	j;
 
 	i = 0;
-	y = get_map_height(map);
-	x = get_map_width(map, y);
 	while (i < y && map)
 	{
 		j = 0;
@@ -89,15 +85,15 @@ int	check_map(char **map)
 	return (1);
 }
 
-void	free_map(char **map)
-{
-	int	i;
+// void	free_map(char **map)
+// {
+// 	int	i;
 
-	i = 0;
-	if (map)
-	{
-		while (map[i])
-			free(map[i++]);
-		free(map);
-	}
-}
+// 	i = 0;
+// 	if (map)
+// 	{
+// 		while (map[i])
+// 			free(map[i++]);
+// 		free(map);
+// 	}
+// }
