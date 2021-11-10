@@ -11,7 +11,7 @@ int	main(int argc, char **argv)
 			exit_msg(NULL, "Error: Malloc failed");
 		init_values(game);
 		if (!check_conditions(game, argv))
-			exit_msg(game, "Error: Invalid map");
+			exit_msg(NULL, "Error: Invalid map");
 		init_game(game);
 		draw_map(game);
 		hook_calls(game);

@@ -73,7 +73,8 @@ int	check_map(char **map, int x, int y)
 		j = 0;
 		while (j < x)
 		{
-			if (map[i][0] != '1' || map[0][j] != '1' || map[y - 1][j] != '1')
+			if (map[i][0] != '1' || map[0][j] != '1' || \
+				map[y - 1][j] != '1' || map[i][x - 1] != '1')
 				return (0);
 			if (j > 0 && j < x && i > 0 && i < y)
 				if (map[i][j] != '0' && map[i][j] != 'C' && \
