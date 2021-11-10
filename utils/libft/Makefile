@@ -12,7 +12,7 @@ SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_itoa.c \
 		ft_strmapi.c ft_strncmp.c ft_strnstr.c \
 		ft_strrchr.c ft_strtrim.c ft_substr.c \
 		ft_tolower.c ft_toupper.c ft_split.c  \
-		get_next_line.c get_next_line_utils.c
+		get_next_line.c
 
 BONUS_SRC = ft_lstadd_back.c ft_lstadd_front.c \
 			ft_lstclear.c ft_lstdelone.c \

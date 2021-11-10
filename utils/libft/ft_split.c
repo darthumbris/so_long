@@ -80,7 +80,7 @@ static char	**ft_split_while(char const *s, char c, char **split, int splts)
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
-	int		splts;	
+	int		splts;
 
 	if (s == NULL)
 		return (NULL);

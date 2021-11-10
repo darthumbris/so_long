@@ -1,14 +1,10 @@
+#include <stddef.h>
+
 char	*ft_strchr(const char *s, int c)
 {
-	while (c > 256)
-		c -= 256;
-	while (*s)
-	{
-		if (*s == c)
-			return ((char *)s);
+	while (*s && *s != (unsigned char)c)
 		s++;
-	}
-	if (c == '\0')
+	if (*s == (unsigned char)c)
 		return ((char *)s);
-	return (0);
+	return (NULL);
 }

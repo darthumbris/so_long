@@ -18,7 +18,7 @@ void	draw_canvas(t_game *game)
 	game->frame_c = 1;
 	while (game->frame_c < 5)
 	{
-		fill_canvas_frame(game, game->canvas);
+		fill_canvas_frame(game, &game->canvas);
 		game->frame_c++;
 	}
 	game->frame_c = 1;
@@ -33,13 +33,13 @@ void	update_canvas(t_game *game, int x, int y)
 	while (game->frame_c < 5)
 	{
 		if (game->frame_c == 1)
-			draw_background(game, x, y, game->canvas->frame1);
+			draw_background(game, x, y, &game->canvas.frame1);
 		else if (game->frame_c == 2)
-			draw_background(game, x, y, game->canvas->frame2);
+			draw_background(game, x, y, &game->canvas.frame2);
 		else if (game->frame_c == 3)
-			draw_background(game, x, y, game->canvas->frame3);
+			draw_background(game, x, y, &game->canvas.frame3);
 		else if (game->frame_c == 4)
-			draw_background(game, x, y, game->canvas->frame4);
+			draw_background(game, x, y, &game->canvas.frame4);
 		game->frame_c++;
 	}
 	game->frame_c = temp_frame;

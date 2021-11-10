@@ -3,17 +3,17 @@
 
 void	init_canvas(t_game *game)
 {
-	game->canvas->frame1 = malloc(sizeof(t_img));
-	game->canvas->frame2 = malloc(sizeof(t_img));
-	game->canvas->frame3 = malloc(sizeof(t_img));
-	game->canvas->frame4 = malloc(sizeof(t_img));
-	game->canvas->frame1->img = mlx_new_image
+	game->canvas.frame1.img = NULL;
+	game->canvas.frame2.img = NULL;
+	game->canvas.frame3.img = NULL;
+	game->canvas.frame4.img = NULL;
+	game->canvas.frame1.img = mlx_new_image
 		(game->mlx, game->map_width, game->map_height);
-	game->canvas->frame2->img = mlx_new_image
+	game->canvas.frame2.img = mlx_new_image
 		(game->mlx, game->map_width, game->map_height);
-	game->canvas->frame3->img = mlx_new_image
+	game->canvas.frame3.img = mlx_new_image
 		(game->mlx, game->map_width, game->map_height);
-	game->canvas->frame4->img = mlx_new_image
+	game->canvas.frame4.img = mlx_new_image
 		(game->mlx, game->map_width, game->map_height);
 }
 
@@ -83,13 +83,13 @@ void	fill_canvas_frame(t_game *game, t_anim *anim)
 		while (game->map[y][x])
 		{
 			if (game->frame_c == 1)
-				draw_canvas_frame(x, y, anim->frame1, game);
+				draw_canvas_frame(x, y, &anim->frame1, game);
 			else if (game->frame_c == 2)
-				draw_canvas_frame(x, y, anim->frame2, game);
+				draw_canvas_frame(x, y, &anim->frame2, game);
 			else if (game->frame_c == 3)
-				draw_canvas_frame(x, y, anim->frame3, game);
+				draw_canvas_frame(x, y, &anim->frame3, game);
 			else if (game->frame_c == 4)
-				draw_canvas_frame(x, y, anim->frame4, game);
+				draw_canvas_frame(x, y, &anim->frame4, game);
 			x++;
 		}
 		y++;

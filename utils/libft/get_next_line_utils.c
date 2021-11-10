@@ -37,27 +37,25 @@ int	ft_nl_len(char *str, char c)
  * the buffer might be needed after this so this
  * gets freed later.
  */
-char	*ft_strjoingnl(char *remain, char const *buff, int btrd, int len)
+char	*ft_strjoingnl(char const *s1, char const *s2)
 {
-	char	*joined;
-	int		i;
-	int		j;
+	char	*ret;
+	size_t	i;
+	size_t	j;
 
-	i = 0;
-	j = 0;
-	joined = ft_calloc(len + btrd + 1, 1);
-	if (remain && joined)
-	{
-		while (remain[i])
-		{
-			joined[i] = remain[i];
-			i++;
-		}
-	}
-	while (j < btrd && joined)
-		joined[i++] = buff[j++];
-	free(remain);
-	return (joined);
+	if (!s2)
+		return (NULL);
+	if (!s1)
+		i = 0;
+	else
+		i = ft_strlen(s1);
+	j = ft_strlen(s2);
+	ret = malloc(i + j + 1);
+	if (!ret)
+		return (NULL);
+	ft_memcpy(ret, s1, i);
+	ft_memcpy(ret + i, s2, j + 1);
+	return (ret);
 }
 
 /*
@@ -87,6 +85,7 @@ char	*ft_create_shift_free(char **remain, char *buff)
 	}
 	(*remain)[j] = '\0';
 	free(buff);
+	buff = NULL;
 	return (line);
 }
 

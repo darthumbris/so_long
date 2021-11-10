@@ -35,11 +35,13 @@ int	get_map_width(char **map, int height)
 	int	i;
 	int	width;
 
-	i = 0;
+	i = 1;
 	if (!map)
 		return (0);
-	width = (int)ft_strlen(map[0]);
-	while (i < height)
+	width = 0;
+	if (map[0])
+		width = (int)ft_strlen(map[0]);
+	while (i < height && width && map[i])
 	{
 		if ((int)ft_strlen(map[i]) != width)
 			return (0);
@@ -61,16 +63,12 @@ int	get_map_height(char **map)
 	return (height);
 }
 
-int	check_map(char **map)
+int	check_map(char **map, int x, int y)
 {
-	int	x;
-	int	y;
 	int	i;
 	int	j;
 
 	i = 0;
-	y = get_map_height(map);
-	x = get_map_width(map, y);
 	while (i < y && map)
 	{
 		j = 0;

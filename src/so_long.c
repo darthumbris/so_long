@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 	t_game	*game;
 
 	game = malloc(sizeof(t_game));
-	if (argc == 2)
+	if (argc == 2 && game)
 	{
 		game->map = read_map(argv[1]);
 		if (check_map(game->map) && check_filetype(argv[1]))
@@ -46,10 +46,9 @@ int	main(int argc, char **argv)
 		hook_calls(game);
 		mlx_loop(game->mlx);
 	}
-	else
-	{
+	else if (argc != 2)
 		ft_putendl_fd("Error: Invalid input", 1);
-		exit(1);
-	}
-	return (0);
+	else
+		ft_putendl_fd("Error: Malloc failed", 1);
+	exit(1);
 }
