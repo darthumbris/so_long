@@ -1,4 +1,4 @@
-#include "so_long_bonus.h"
+#include <so_long_bonus.h>
 
 int	main(int argc, char **argv)
 {
@@ -19,5 +19,5 @@ int	main(int argc, char **argv)
 	}
 	else
 		exit_msg(NULL, "Error: Invalid input");
-	return (0);
+	return (EXIT_SUCCESS);
 }

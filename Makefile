@@ -10,7 +10,7 @@ MLX_DIR = ./libs/mlx
 
 MLX_LIB = $(MLX_DIR)/libmlx.dylib
 
-FLAGS = -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 
 LFLAGS = -framework OpenGL -framework AppKit
 
@@ -37,7 +37,11 @@ SRC_BONUS =	./src_bonus/so_long_bonus.c \
 			./src_bonus/canvas_bonus.c \
 			./src_bonus/sprite_bonus.c \
 			./src_bonus/init_address_bonus.c \
-			./src_bonus/moves_to_string_bonus.c
+			./src_bonus/moves_to_string_bonus.c \
+			./src_bonus/draw_enemies_bonus.c \
+			./src_bonus/enemy_handling_bonus.c \
+			./src_bonus/free_game_bonus.c \
+			./src_bonus/init_enemies_bonus.c 
 
 OBJ = $(SRC:%.c=%.o)
 

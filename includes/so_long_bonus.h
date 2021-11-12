@@ -31,6 +31,14 @@ typedef struct s_anim
 	t_img	frame4;
 }				t_anim;
 
+typedef struct s_enemy
+{
+	int				x;
+	int				y;
+	int				direction;
+	struct s_enemy	*next;
+}				t_enemy;
+
 typedef struct s_game
 {
 	void			*mlx;
@@ -41,9 +49,11 @@ typedef struct s_game
 	t_anim			bg;
 	t_anim			player;
 	t_anim			fish;
+	t_anim			crab;
 	t_img			wall;
 	t_img			exit;
 	t_img			end;
+	t_img			game_over;
 	unsigned int	color;
 	int				player_x;
 	int				player_y;
@@ -56,6 +66,8 @@ typedef struct s_game
 	int				loop;
 	int				direction;
 	int				frame_c;
+	t_enemy			*crabs;
+	int				enemies;
 }				t_game;
 
 char		**read_map(char *file);
@@ -67,6 +79,8 @@ void		free_map(char **game);
 int			check_conditions(t_game *game, char **argv);
 int			check_valid_position(t_game *game, int x, int y);
 int			check_filetype(char *file);
+void		check_enemies_amount(t_game *game);
+int			check_valid_enemy_position(t_game *game, int x, int y);
 
 void		init_values(t_game *game);
 void		init_game(t_game *game);
@@ -78,10 +92,12 @@ void		init_canvas(t_game *game);
 void		init_address(t_game *game);
 void		load_textures(t_game *game);
 void		init_textures(t_game *game);
+void		init_enemies(t_game *game);
 
 void		draw_image(t_game *game, void *image, int x, int y);
 void		draw_background(t_game *game, int x, int y, t_img *canvas_frame);
 void		draw_canvas(t_game *game);
+void		draw_enemies(t_game *game);
 
 void		update_canvas(t_game *game, int x, int y);
 void		fill_canvas_frame(t_game *game, t_anim *anim);
@@ -101,7 +117,13 @@ void		player_move(t_game *game, int x, int y);
 
 void		moves_to_string(t_game *game);
 
+void		move_enemies(t_game *game);
+
 int			end_game(t_game *game);
+int			game_over(t_game *game);
 int			close_game(t_game *game);
 void		exit_msg(t_game *game, char *msg);
+
+void		free_images(t_game *game);
+void		free_enemies(t_enemy **crablst);
 #endif

@@ -1,4 +1,4 @@
-#include "so_long_bonus.h"
+#include <so_long_bonus.h>
 
 void	player_move(t_game *game, int x, int y)
 {

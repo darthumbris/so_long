@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include <so_long.h>
 #include <fcntl.h>
 
 char	**read_map(char *file)
@@ -85,15 +85,15 @@ int	check_map(char **map, int x, int y)
 	return (1);
 }
 
-// void	free_map(char **map)
-// {
-// 	int	i;
+void	free_map(char **map)
+{
+	int	i;
 
-// 	i = 0;
-// 	if (map)
-// 	{
-// 		while (map[i])
-// 			free(map[i++]);
-// 		free(map);
-// 	}
-// }
+	i = 0;
+	if (map)
+	{
+		while (map[i])
+			free(map[i++]);
+		free(map);
+	}
+}

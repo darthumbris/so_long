@@ -1,4 +1,4 @@
-#include "so_long_bonus.h"
+#include <so_long_bonus.h>
 
 int	check_valid_position(t_game *game, int x, int y)
 {
@@ -11,18 +11,20 @@ int	check_valid_position(t_game *game, int x, int y)
 		return (0);
 	if (game->map[i][j] == '1')
 		return (0);
-	if (game->map[i][j] == 'C')
+	else if (game->map[i][j] == 'C')
 	{
 		game->fish_collect++;
 		game->map[i][j] = '0';
 		update_canvas(game, j, i);
 	}
-	if (game->map[i][j] == 'E')
+	else if (game->map[i][j] == 'E')
 	{
 		if (game->fish_collect == game->fish_total)
 			return (end_game(game));
 		return (-1);
 	}
+	else if (game->map[i][j] == 'F')
+		return (game_over(game));
 	ft_putstr_fd("\r", 1);
 	return (1);
 }
@@ -70,7 +72,10 @@ int	check_conditions(t_game *game, char **argv)
 	{
 		game->map = read_map(argv[1]);
 		if (game->map == NULL)
+		{
+			free_map(game->map);
 			exit_msg(NULL, "Error: Invalid input");
+		}
 		game->map_height = get_map_height(game->map);
 		game->map_width = get_map_width(game->map, game->map_height);
 		if (check_map(game->map, game->map_width, game->map_height))
@@ -78,4 +83,26 @@ int	check_conditions(t_game *game, char **argv)
 				return (1);
 	}
 	return (0);
+}
+
+void	check_enemies_amount(t_game *game)
+{
+	int	i;
+	int	j;
+	int	counter;
+
+	i = 0;
+	counter = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == '0')
+				counter++;
+			j++;
+		}
+		i++;
+	}
+	game->enemies = counter / 20;
 }

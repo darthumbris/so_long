@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include <so_long.h>
 
 static void	init_img(t_game *game)
 {

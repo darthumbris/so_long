@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include <so_long.h>
 
 int	check_valid_position(t_game *game, int x, int y)
 {

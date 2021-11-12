@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include <so_long.h>
 
 static int	keypress(int keycode, t_game *game)
 {

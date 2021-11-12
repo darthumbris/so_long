@@ -1,4 +1,4 @@
-#include "so_long_bonus.h"
+#include <so_long_bonus.h>
 
 void	draw_image(t_game *game, void *image, int x, int y)
 {

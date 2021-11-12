@@ -46,6 +46,7 @@ int		check_conditions(t_game *game, char **argv);
 
 char	**read_map(char *file);
 int		check_map(char **map, int x, int y);
+void	free_map(char **map);
 
 int		get_map_height(char **map);
 int		get_map_width(char **map, int height);

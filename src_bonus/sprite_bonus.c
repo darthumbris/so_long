@@ -1,4 +1,4 @@
-#include "so_long_bonus.h"
+#include <so_long_bonus.h>
 
 void	load_textures(t_game *game)
 {
@@ -8,9 +8,13 @@ void	load_textures(t_game *game)
 		(game->mlx, "assets/exit.xpm", &game->exit.img_w, &game->exit.img_h);
 	game->end.img = mlx_xpm_file_to_image
 		(game->mlx, "assets/end.xpm", &game->end.img_w, &game->end.img_h);
+	game->game_over.img = mlx_xpm_file_to_image
+		(game->mlx, "assets/game_over.xpm", \
+		&game->game_over.img_w, &game->game_over.img_h);
 	init_animation_frames(game, (&game->bg), "assets/anim/bg");
 	init_animation_frames(game, (&game->player), "assets/anim/player");
 	init_animation_frames(game, (&game->fish), "assets/anim/fish");
+	init_animation_frames(game, (&game->crab), "assets/anim/crab");
 }
 
 t_img	*sprite_selector(t_game *game, char c)
@@ -30,7 +34,7 @@ t_img	*sprite_selector(t_game *game, char c)
 	}
 	else if (c == '1')
 		return (&game->wall);
-	else if (c == '0' || c == 'P')
+	else if (c == '0' || c == 'P' || c == 'F')
 		return (background_selector(game));
 	return (NULL);
 }

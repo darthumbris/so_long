@@ -1,4 +1,4 @@
-#include "so_long_bonus.h"
+#include <so_long_bonus.h>
 #include <fcntl.h>
 
 char	**read_map(char *file)
@@ -95,7 +95,13 @@ void	free_map(char **map)
 	if (map)
 	{
 		while (map[i])
-			free(map[i++]);
+		{
+			if (map[i] != NULL)
+				free(map[i]);
+			map[i] = NULL;
+			i++;
+		}
 		free(map);
+		map = NULL;
 	}
 }

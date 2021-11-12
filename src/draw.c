@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include <so_long.h>
 
 void	draw_image(t_game *game, void *image, int x, int y)
 {

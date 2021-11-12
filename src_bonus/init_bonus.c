@@ -1,13 +1,15 @@
-#include "so_long_bonus.h"
+#include <so_long_bonus.h>
 
 static void	init_img(t_game *game)
 {
 	game->wall.img = NULL;
 	game->exit.img = NULL;
 	game->end.img = NULL;
+	game->game_over.img = NULL;
 	game->wall.addr = NULL;
 	game->exit.addr = NULL;
 	game->end.addr = NULL;
+	game->game_over.addr = NULL;
 }
 
 void	init_values(t_game *game)
@@ -29,6 +31,8 @@ void	init_values(t_game *game)
 	game->loop = 0;
 	game->direction = 0;
 	game->frame_c = 0;
+	game->enemies = 0;
+	game->crabs = NULL;
 }
 
 int	init_player(t_game *game)
@@ -88,6 +92,7 @@ void	init_game(t_game *game)
 	game->direction = 1;
 	game->frame_c = 1;
 	game->moves_str = ft_strdup("Moves: 0");
+	init_enemies(game);
 	load_textures(game);
 	init_canvas(game);
 	init_address(game);

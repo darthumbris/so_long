@@ -1,4 +1,4 @@
-#include "so_long_bonus.h"
+#include <so_long_bonus.h>
 
 void	init_animation_frames(t_game *game, t_anim *anim, char *path)
 {
@@ -36,6 +36,11 @@ int	animation_loop(t_game *game)
 		animation_canvas(game, &game->loop);
 		animation_player(game, game->player_x, game->player_y);
 		mlx_string_put(game->mlx, game->win, 0, 12, 0, game->moves_str);
+		if (game->loop == 24 || game->loop == 12)
+			move_enemies(game);
+		draw_enemies(game);
+		if (game->endstate == 1)
+			return (1);
 		game->loop++;
 	}
 	return (1);
@@ -43,27 +48,27 @@ int	animation_loop(t_game *game)
 
 void	animation_canvas(t_game *game, int *loop)
 {
-	if (*loop == 5)
+	if (*loop < 6)
 	{
 		draw_image(game, game->canvas.frame1.img, 0, 0);
 		game->frame_c = 1;
 	}
-	else if (*loop == 10)
+	else if (*loop >= 6 && *loop < 15)
 	{
 		draw_image(game, game->canvas.frame2.img, 0, 0);
 		game->frame_c = 2;
 	}
-	else if (*loop == 15)
+	else if (*loop >= 15 && *loop < 20)
 	{
 		draw_image(game, game->canvas.frame3.img, 0, 0);
 		game->frame_c = 3;
 	}
-	else if (*loop == 20)
+	else if (*loop >= 20 && *loop < 25)
 	{
 		draw_image(game, game->canvas.frame4.img, 0, 0);
 		game->frame_c = 4;
 	}
-	else if (*loop > 25)
+	else if (*loop >= 25)
 		*loop = 0;
 }
 
