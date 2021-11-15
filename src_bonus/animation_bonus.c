@@ -35,7 +35,8 @@ int	animation_loop(t_game *game)
 	{
 		animation_canvas(game, &game->loop);
 		animation_player(game, game->player_x, game->player_y);
-		mlx_string_put(game->mlx, game->win, 0, 12, 0, game->moves_str);
+		mlx_string_put(game->mlx, game->win, 2, 12, 0, game->moves_str);
+		mlx_string_put(game->mlx, game->win, 0, 10, WHITE, game->moves_str);
 		if (game->loop == 24 || game->loop == 12)
 			move_enemies(game);
 		draw_enemies(game);

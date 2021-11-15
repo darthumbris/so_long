@@ -10,7 +10,7 @@ MLX_DIR = ./libs/mlx
 
 MLX_LIB = $(MLX_DIR)/libmlx.dylib
 
-FLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+FLAGS = -Wall -Werror -Wextra -g 
 
 LFLAGS = -framework OpenGL -framework AppKit
 

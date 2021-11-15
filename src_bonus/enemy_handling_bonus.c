@@ -2,7 +2,8 @@
 
 int	check_valid_enemy_position(t_game *game, int x, int y)
 {
-	return (game->map[y][x] == '0');
+	return (game->map[y][x] == '0' && \
+		y != game->player_y && x != game->player_x);
 }
 
 static int	check_enemy_player_collision(t_game *game, int x, int y)

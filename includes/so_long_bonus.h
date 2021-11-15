@@ -9,6 +9,7 @@
 # define RIGHT	2
 # define ESCAPE 53
 # define NONE	4278190080
+# define WHITE	16777215
 
 typedef unsigned int	t_uint;
 
