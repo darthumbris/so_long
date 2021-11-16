@@ -21,9 +21,11 @@ void	free_images(t_game *game)
 	if (game->end.img != NULL)
 		mlx_destroy_image(game->mlx, game->end.img);
 	if (game->wall.img != NULL)
-		mlx_destroy_image(game->mlx, game->end.img);
+		mlx_destroy_image(game->mlx, game->wall.img);
 	if (game->fish.img != NULL)
 		mlx_destroy_image(game->mlx, game->fish.img);
+	if (game->bg.img != NULL)
+		mlx_destroy_image(game->mlx, game->bg.img);
 }
 
 int	close_game(t_game *game)
