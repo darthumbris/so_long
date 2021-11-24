@@ -39,8 +39,10 @@ int	init_player(t_game *game)
 {
 	int	i;
 	int	j;
+	int	player_count;
 
 	i = 0;
+	player_count = 0;
 	while (game->map[i])
 	{
 		j = 0;
@@ -48,14 +50,16 @@ int	init_player(t_game *game)
 		{
 			if (game->map[i][j] == 'P')
 			{
+				player_count++;
 				game->player_x = j;
 				game->player_y = i;
-				return (1);
 			}
 			j++;
 		}
 		i++;
 	}
+	if (player_count == 1)
+		return (1);
 	return (0);
 }
 

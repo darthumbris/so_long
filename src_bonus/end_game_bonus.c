@@ -31,7 +31,6 @@ int	close_game(t_game *game)
 	if (game->enemies)
 		free_enemies(&game->crabs);
 	mlx_destroy_window(game->mlx, game->win);
-	free(game->mlx);
 	free(game->moves_str);
 	exit(EXIT_SUCCESS);
 	return (1);

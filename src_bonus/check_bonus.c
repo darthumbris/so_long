@@ -78,6 +78,11 @@ int	check_conditions(t_game *game, char **argv)
 		}
 		game->map_height = get_map_height(game->map);
 		game->map_width = get_map_width(game->map, game->map_height);
+		if (!game->map_height || !game->map_width)
+		{
+			free_map(game->map);
+			exit_msg(NULL, "Error: Invalid map");
+		}
 		if (check_map(game->map, game->map_width, game->map_height))
 			if (init_player(game) && check_exit(game) && init_fishes(game))
 				return (1);

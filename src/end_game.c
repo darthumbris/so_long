@@ -33,7 +33,6 @@ int	close_game(t_game *game)
 	free_map(game->map);
 	free_images(game);
 	mlx_destroy_window(game->mlx, game->win);
-	free(game->mlx);
 	exit(EXIT_SUCCESS);
 	return (1);
 }

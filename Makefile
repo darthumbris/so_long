@@ -50,15 +50,14 @@ OBJ_BONUS = $(SRC_BONUS:%.c=%.o)
 all: $(NAME)
 
 $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ)
-	cd $(LIBFT_DIR) && mv ./libft.a ../../
-	cd $(MLX_DIR) && mv ./libmlx.dylib ../../
-	gcc $(FLAGS) $(OBJ) -L. -lmlx -lft $(LFLAGS) -o $(NAME)
+	gcc $(FLAGS) $(OBJ) -L. -lmlx $(LIBFT) $(LFLAGS) -o $(NAME)
 
 %.o: %.c
 	gcc $(FLAGS) $(INC) -c $< -o $@
 
 $(MLX_LIB):
 	$(MAKE) -C $(MLX_DIR)
+	cd $(MLX_DIR) && cp ./libmlx.dylib ../../
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
@@ -66,20 +65,16 @@ $(LIBFT):
 bonus: $(NAME_BONUS)
 
 $(NAME_BONUS): $(MLX_LIB) $(LIBFT) $(OBJ_BONUS)
-	cd $(LIBFT_DIR) && mv ./libft.a ../../
-	cd $(MLX_DIR) && mv ./libmlx.dylib ../../
-	gcc $(FLAGS) $(OBJ_BONUS) -L. -lmlx -lft $(LFLAGS) -o $(NAME_BONUS)
+	gcc $(FLAGS) $(OBJ_BONUS) -L. -lmlx $(LIBFT) $(LFLAGS) -o $(NAME_BONUS)
 
 clean:
 	$(MAKE) clean -C $(MLX_DIR)
-	$(MAKE) clean -C $(LIBFT_DIR)
-	rm -f $(OBJ) $(OBJ_BONUS) libft.a libmlx.dylib
+	$(MAKE) fclean -C $(LIBFT_DIR)
+	rm -f $(OBJ) $(OBJ_BONUS) libmlx.dylib
 
 fclean:	clean
-	$(MAKE) fclean -C $(LIBFT_DIR)
-	rm -f $(NAME)
-	rm -f $(NAME_BONUS)
+	rm -f $(NAME) $(NAME_BONUS)
 
 re: fclean all
 
-.PHONY: all clean fclean re norm bonus
+.PHONY: all clean fclean re bonus
